@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modif Patient{% endblock %}
+{% block body %}
+	<div class="container">
+		<h1 class="display-4">Sortie du patient : {{sejour.getPatient.getInfo}}</h1><br>
+		<div class="form-row">
+			<div class="col-md-2 mb-3">
+				<label>Date de sortie :</label><br>
+				{{form_start(form.dateDepart)}}
+				{{form_widget(form.dateDepart)}}
+			</div><br>
+			<div class="col-md-2 mb-3">
+				<label>Heure de sortie :</label><br>
+				{{form_start(form.heureDepart)}}
+				{{form_widget(form.heureDepart,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+			</div>
+			{{form_end(form)}}
+	</div>
+{% endblock %}

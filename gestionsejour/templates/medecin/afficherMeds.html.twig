@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1 class="font-weight-light text-center">LISTE DES MÉDECINS</h1><br>
+	<h6 class="px-2 text-center">Nombre de médecins : {{medecins|length}}</h6><br>
+	<ul>
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">#</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Service</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+				</tr>
+			</thead>
+			{% for medecin in medecins %}
+				<tbody>
+						<tr class="text-center">
+						<th scope="row">{{medecin.id}}</th>
+						<td>{{medecin.nom}}</td>
+						<td>{{medecin.prenom}}</td>
+						<td>{{medecin.getService.getLibelle()}}</td>
+						 <td class="text-center">
+							<a href="{{path('ModifierMed',{id:medecin.id})}}">
+								<img class="icon" src="/img/edit.png" alt="Bouton modifier">
+							</a>
+						</td>
+						<td class="text-center">
+							<a href="{{path('supprimerMed',{id:medecin.id})}}">
+								<img class="icon" src="/img/delete.png" alt="Bouton supprimer">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			{% else %}
+				<p>Pas de médecin trouvé...</p>
+			{% endfor %}
+		</table>
+	</ul>
+{% endblock %}

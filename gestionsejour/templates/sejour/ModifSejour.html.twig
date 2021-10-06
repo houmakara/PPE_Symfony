@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier patient{% endblock %}
+{% block body %}
+	<div class="container">
+		<h1 class="display-4">Modification du sejour n°{{sejour.id}}</h1><br>
+		<div class="form-row">
+			<div class="col-md-4 mb-3">
+				<label>Patient :</label><br>
+				{{form_start(form.patient)}}
+				{{form_widget(form.patient,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+		</div>
+		<div class="form-row">
+			<div class="col-md-2 mb-3">
+				<label>Date d'entrée :</label><br>
+				{{form_start(form.dateArrivee)}}
+				{{form_widget(form.dateArrivee)}}
+			</div><br>
+			<div class="col-md-2 mb-3">
+				<label>Heure d'entrée :</label><br>
+				{{form_start(form.heureArrivee)}}
+				{{form_widget(form.heureArrivee,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+		</div>
+		<div class="form-row">
+			<div class="col-md-2 mb-3">
+				<label>Chambre :</label><br>
+				{{form_start(form.chambre)}}
+				{{form_widget(form.chambre,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+			<div class="col-md-2 mb-3">
+				<label>Service :</label><br>
+				{{form_start(form.service)}}
+				{{form_widget(form.service,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+			<div class="col-md-2 mb-3">
+				<label>Médecin :</label><br>
+				{{form_start(form.medecin)}}
+				{{form_widget(form.medecin,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+					</div><br>
+			{{form_end(form)}}					 
+	</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<h1 class="font-weight-light text-center">VALIDATION SORTIE</h1><br>
+	<h6 class="px-2 text-center">Nombre de sejour : {{sejours|length}}</h6><br>
+	<ul>
+		<p  class="text-left">* La date de sortie s'actualise chaque jour tant que le patient n'est pas sortie</p>
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">Patient</th>
+					<th scope="col">Service</th>
+					<th scope="col">Date d'entrée</th>
+					<th scope="col">Heure d'entrée</th>
+					<th scope="col">Date de sortie</th>
+					<th scope="col">Heure de sortie</th>
+					<th scope="col">Sortie</th>
+				</tr>
+			</thead>
+			{% for sejour in sejours %}
+					<tbody>
+					<tr class="text-center">
+							<td>{{sejour.getPatient.getInfo()}}</td>
+							<td>{{sejour.getService.getLibelle()}}</td>
+							<td>{{sejour.dateArrivee|date('d/m/Y')}}</td>
+							<td>{{sejour.heureArrivee}}</td>
+							<td>{{sejour.dateDepart|date('d/m/Y')}}</td>
+							<td>{{sejour.heureDepart}}</td>
+							<td class="text-center">
+								<a href="{{path('SortieSej',{id:sejour.id})}}">
+									<img class="icon" width="16" height="16" src="/img/sortie.png" alt="Bouton supprimer">
+								</a>
+							</td>
+						</tr>
+					</tbody>
+
+			{% else %} 
+			<p>Pas de séjour dans votre service trouvé ...</p>
+			{% endfor %}
+		</table>
+	</ul>
+
+{% endblock %}

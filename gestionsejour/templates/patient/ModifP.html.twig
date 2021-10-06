@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modif Patient
+{% endblock %}
+{% block body %}
+	<!-- Register form bootstrap à faire -->
+	<div class="container">
+		<div class="text-center">
+			<h1 class="display-4">Modification du patient n°{{patient.id}}</h1><br>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label>Nom :</label><br>
+					{{form_start(form.nom)}}
+					{{form_widget(form.nom,{ 'attr': {'class': "form-control"} })}}		
+				</div><br>
+				<div class="col-md-4 mb-3">
+					<label>Prenom :</label><br>
+					{{form_start(form.prenom)}}
+					{{form_widget(form.prenom,{ 'attr': {'class': "form-control"} })}}
+				</div><br>
+			</div><br>
+			<div class="form-row">
+				<div class="col-md-2 mb-3">							
+				<label>Date de naissance :</label><br>
+					{{form_start(form.datedenaissance)}}
+					{{form_widget(form.datedenaissance)}}
+				</div><br>
+				<div class="col-md-2 mb-3">
+					<label>Sexe :</label><br>
+					{{form_start(form.sexe)}}
+					{{form_widget(form.sexe,{ 'attr': {'class': "form-control"} })}}		
+				</div><br>
+				</div>
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<label>Adresse :</label><br>
+						{{form_start(form.adresse)}}
+						{{form_widget(form.adresse,{ 'attr': {'class': "form-control"} })}}		
+						</div><br>
+					<div class="col-md-3 mb-3">
+						<label>Ville :</label><br>
+						{{form_start(form.ville)}}
+						{{form_widget(form.ville,{ 'attr': {'class': "form-control"} })}}		
+					</div><br>
+					<div class="col-md-3 mb-3">
+						<label>Tel :</label><br>
+						{{form_start(form.telephone)}}
+						{{form_widget(form.telephone,{ 'attr': {'class': "form-control"} })}}		
+					</div><br>	
+				</div><br>
+				<div class="text-center">
+					{{form_end(form)}}	 
+				</div>					
+		</div>
+	</div>
+{% endblock %}

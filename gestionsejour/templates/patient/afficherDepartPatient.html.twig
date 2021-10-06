@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1 class="font-weight-light text-center">LISTE DES DEPARTS</h1><br>
+	<ul>
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">Patient</th>
+					<th scope="col">Chambre</th>
+                    <th scope="col">Lit</th>
+				</tr>
+			</thead>
+			{% for unPatient in departPatient %}
+				<tbody>
+					<tr class="text-center">				
+                    </tr>
+				</tbody>
+			{% else %}
+				<p>Pas de patient trouvé...</p>
+			{% endfor %}
+		</table>
+	</ul>
+{% endblock %}

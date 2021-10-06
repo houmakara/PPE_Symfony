@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<style>
+			a,
+			ul,
+			li {
+				text-decoration: none;
+				list-style: none;
+			}
+		</style>
+
+
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{{ path('menu') }}"><img src="/img/logo.png" alt="Graghospital logo" width="50" height="50">GRAGHOSPITAL</a>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					{% if app.user %}                   
+						{% if app.user.role == 'Infirmier'%}                        
+							<li class="nav-item active"><a class="nav-link">{{ app.user.role }} [{{app.user.getService.getLibelle()}}]</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Patient</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{path('afficherPatient')}}">Liste patients</a>
+										<a class="dropdown-item" href="{{ path('patientchambresejour') }}">Chambres des patients</a>
+									</div>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Séjour</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{path('InfoSejourinfirmier')}}">Valider une sortie</a>
+									</div>
+								</li>		
+					    {% elseif app.user.role == 'Administratif'%}                            
+							<li class="nav-item active"><a class="nav-link" href="{{ path('menu') }}">{{ app.user.role }}</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Patient</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{ path('Ajoutpatient') }}">Nouveau patient</a>
+										<a class="dropdown-item" href="{{ path('afficherPatient') }}">Liste patients</a>
+									</div>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Séjour</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{ path('CreateSejour') }}">Nouveau séjour</a>
+										<a class="dropdown-item" href="{{ path('afficherSej') }}">Afficher les séjours</a>
+									</div>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médecin</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{ path('AjouterMed') }}">Nouveau médecin</a>
+										<a class="dropdown-item" href="{{ path('afficherMeds') }}">Afficher les médecins</a>
+									</div>
+								</li>
+						{% else %}                            
+							<h2>Erreur<h2>
+						{% endif %}                                                 
+							<li>
+					</ul>
+					<style>
+					footer{
+						margin-right: 1em;
+					}
+					</style>
+					<footer class="page-footer font-small fixed-top">
+						<div class="footer-copyright text-right">
+							<p>Vous êtes connecté en tant que : {{app.user.username}}</p>
+							
+						</div>
+					</footer>
+							<span class="navbar-text"><a href="{{ path('app_logout') }}">Deconnexion</a></span>
+						</li>
+						{% else %}   							              
+							<span class="navbar-text"><a href="{{ path('app_login') }}">Se connecter</a><br>
+							<a href="{{ path('app_register') }}">Créer un compte</a></span>
+						{% endif %}             
+					</div>
+				</nav>
+				{% block body %}{% endblock %}
+				{% block javascripts %}{% endblock %}
+				<!-- Optional JavaScript -->
+				<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			</body>
+		</html>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<h1 class="font-weight-light text-center">LISTE DES SEJOURS</h1><br>
+	<h6 class="px-2 text-center">Nombre de sejour : {{sejours|length}}</h6><br>
+	<ul>
+		<p  class="text-left">* La date de sortie s'actualise chaque jour tant que le patient n'est pas sortie</p>
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">#</th>
+					<th scope="col">Patient</th>
+					<th scope="col">Service</th>
+					<th scope="col">Chambre</th>
+					<th scope="col">Lit</th>
+					<th scope="col">Médecin</th>
+					<th scope="col">Date d'entrée</th>
+					<th scope="col">Heure d'entrée</th>
+					<th scope="col">Date de sortie</th>
+					<th scope="col">Heure de sortie</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+				</tr>
+			</thead>
+			{% for sejour in sejours %}
+				<tbody>
+				<tr class="text-center">
+						<th scope="row">{{sejour.id}}</th>
+						<td>{{sejour.getPatient.getInfo()}}</td>
+						<td>{{sejour.getService.getLibelle()}}</td>
+						<td>{{sejour.getChambre.getId()}}</td>
+						<td>{{sejour.getChambre.getNochambre()}}</td>
+						<td>{{sejour.getMedecin.getInfo()}}</td>
+						<td>{{sejour.dateArrivee|date('d/m/Y')}}</td>
+						<td>{{sejour.heureArrivee}}</td>
+						<td>{{sejour.dateDepart|date('d/m/Y')}}</td>
+						<td>{{sejour.heureDepart}}</td>
+						<td class="text-center">
+							<a href="{{path('ModifSejour',{id:sejour.id})}}">
+								<img class="icon" src="/img/edit.png" alt="Bouton modifier">
+							</a>
+						</td>
+						<td class="text-center">
+							<a href="{{path('suppSejour',{id:sejour.id})}}">
+								<img class="icon" src="/img/delete.png" alt="Bouton supprimer">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+
+			{% else %}
+				<p>Pas de séjour trouvé...</p>
+			{% endfor %}
+		</table>
+	</ul>
+
+{% endblock %}

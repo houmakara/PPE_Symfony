@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1 class="display-4">Médecin n°{{medecins.nom}}</h1><br>
+	<ul>
+    	<p class="display-4">Liste patient(s)</p><br>
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+				</tr>
+			</thead>
+            			{% for sejour in sejours %}
+
+			{% for medecin in medecins %}
+				<tbody>
+						<tr class="text-center">
+						<td>{{medecin.getPatient.getNom()}}</td>
+                        <td>{{medecin.getPatient.getPrenom()}}</td>
+					</tr>
+				</tbody>
+			{% else %}
+				<p>Pas de patient trouvé...</p>
+			{% endfor %}
+		</table>
+	</ul>
+{% endblock %}

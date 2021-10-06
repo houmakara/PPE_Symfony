@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1 class="font-weight-light text-center">LISTE DES PATIENTS</h1><br>
+	<h6 class="px-2 text-center">Nombre de patient : {{patients|length}}</h6><br>
+	<ul>
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+					<th scope="col">#</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Date de Naissance</th>
+					<th scope="col">Sexe</th>
+					<th scope="col">Adresse</th>
+					<th scope="col">Ville</th>
+					<th scope="col">Telephone</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+				</tr>
+			</thead>
+			{% for patient in patients %}
+				<tbody>
+						<tr class="text-center">
+
+						<th scope="row">{{patient.id}}</th>
+						<td>{{patient.nom}}</td>
+						<td>{{patient.prenom}}</td>
+						<td>
+							{{patient.datedenaissance|date('d/m/Y')}}</td>
+						<td>{{patient.sexe}}</td>
+						<td>{{patient.adresse}}</td>
+						<td>{{patient.ville}}</td>
+						<td>{{patient.telephone}}</td>
+						<td class="text-center">
+							<a href="{{path('patientmodif',{id:patient.id})}}">
+								<img class="icon" src="/img/edit.png" alt="Bouton modifier">
+							</a>
+						</td>
+						<td class="text-center">
+							<a href="{{path('supprimerPat',{id:patient.id})}}">
+								<img class="icon" src="/img/delete.png" alt="Bouton supprimer">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+
+			{% else %}
+				<p>Pas de patient trouvé...</p>
+			{% endfor %}
+		</table>
+	</ul>
+{% endblock %}

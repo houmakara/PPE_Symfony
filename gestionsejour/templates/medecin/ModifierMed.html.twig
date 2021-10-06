@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier Médecin{% endblock %}
+{% block body %}
+<div class="container">
+		<h1 class="display-4">Modification du médecin n°{{medecin.id}}</h1><br>
+		<div class="form-row">
+			<div class="col-md-4 mb-3">
+				<label>Nom :</label><br>
+				{{form_start(form.nom)}}
+				{{form_widget(form.nom,{ 'attr': {'class': "form-control"} })}}		
+			</div><br>
+			<div class="col-md-4 mb-3">
+				<label>Prenom :</label><br>
+				{{form_start(form.prenom)}}
+				{{form_widget(form.prenom,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+            <div class="col-md-2 mb-3">
+				<label>Service :</label><br>
+				{{form_start(form.service)}}
+				{{form_widget(form.service,{ 'attr': {'class': "form-control"} })}}
+			</div><br>
+		</div><br>
+			<div class="text-center">
+				{{form_end(form)}}	 
+			</div>					
+		</div>
+	</div>
+{% endblock %}

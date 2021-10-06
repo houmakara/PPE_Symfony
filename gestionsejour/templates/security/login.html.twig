@@ -1,0 +1,56 @@
+{% extends 'default_base.html.twig' %}
+
+{% block title %}Connexion
+{% endblock %}
+
+{% block stylesheets %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link
+	rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/sign-in/">
+
+	<!-- Bootstrap core CSS -->
+	<link
+	href="./Signin Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="./Signin Template for Bootstrap_files/signin.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+	<div class="container" style="margin-top:50px;">
+		<div class="row">
+			<div class="col-lg-6 col-md-7 mx-auto">
+				<form class="form-signin" method="POST">
+					<div class="text-center mb-4">
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+
+						<img class="mb-4" src="/img/logo.png" alt="Graghospital logo" width="72" height="72" margin="50px">
+						<h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
+					</div>
+					<div class="form-label-group">
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail4" class="form-control" placeholder="Adresse email" required autofocus>
+					</div>
+					<br>
+					<div class="form-label-group">
+						<input type="password" name="password" id="inputPassword4" class="form-control" minlength="6" placeholder="Mot de passe" required>
+					</div>
+					<div class="mb-3"><br>
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+					</div>
+					<!-- Copyright -->
+					<div class="footer-copyright text-center py-3">© 2020 Copyright 
+						<a href="{{ path('menu') }}">GRAGHOSPITAL</a>
+					</div>
+					<!-- Copyright -->
+				</form>
+			</div>
+		</div>
+	</div>
+</body>{% endblock %}
